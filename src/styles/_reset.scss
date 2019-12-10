@@ -1,0 +1,14 @@
+$g4import-reset: true;
+@import '~@vope/scss/style/public/reset';
+
+:focus{
+  outline: none;
+}
+
+body{
+  -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;
+}
+
+#app{
+  height: 100vh; overflow: auto;
+}

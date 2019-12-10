@@ -1,9 +1,17 @@
 import Vue from 'vue';
-import App from './App.vue';
+import '@/plugins/element';
+import VueAxios from 'vue-axios';
 import router from './router';
 import store from './store';
+import axios from './axios';
+import '@/styles/index.scss';
+import App from './App.vue';
+import { t } from 'element-ui/lib/locale';
+
+Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
+Vue.prototype.$t = t;
 
 new Vue({
   router,
