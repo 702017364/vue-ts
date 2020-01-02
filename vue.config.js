@@ -1,7 +1,8 @@
 const { resolve, join } = require('path');
 const analyzer = require('webpack-bundle-analyzer');
+require('./vue')(__dirname);
 
-const basic = join(__dirname, 'src'); 
+const basic = join(__dirname, 'src');
 
 module.exports = {
   productionSourceMap: false,
@@ -19,8 +20,12 @@ module.exports = {
         .plugin('webpack-bundle-analyzer')
         .use(analyzer.BundleAnalyzerPlugin);
     const { alias: aliasQuote } = config.resolve;
-    const alias = (alias, path) => aliasQuote.set(alias, join(basic, path));
-    alias('@const', 'const');
+    [
+      ['@c', 'components'],
+    ].forEach(([ alias, path ]) => {
+      const value = join(basic, path);
+      aliasQuote.set(alias, value);
+    });
   },
 
   pluginOptions: {

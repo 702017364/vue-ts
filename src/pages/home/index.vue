@@ -1,34 +1,16 @@
 <template>
-  <el-scrollbar 
-    :class="$style.home"
-    :wrap-class="$style.wrap"
-    :view-class="$style.view">
-    <layout-header></layout-header>
-  </el-scrollbar>
+  <layout-view></layout-view>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import LayoutHeader from './header.vue';
+import LayoutView from './view.vue';
 
 @Component({
   components: {
-    LayoutHeader,
+    LayoutView,
   },
 })
-export default class Layout extends Vue {
-
+export default class Home extends Vue {
 }
 </script>
-
-<style lang="scss" module>
-  .home{
-    height: 100%; overflow: hidden;
-  }
-  .wrap{
-    overflow-x: hidden;
-  }
-  .view{
-    min-height: 100%; display: flex; flex-direction: column;
-  }
-</style>

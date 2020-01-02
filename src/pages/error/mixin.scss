@@ -1,0 +1,38 @@
+.body{
+  @include mcenter(to);
+}
+
+.title{
+  font-size: f2rem(240px); font-weight: 700; display: flex; color: $gcolor-active;
+}
+
+@keyframes zero{
+  0%{
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  25%{
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+  75%{
+    transform: rotate3d(0, 1, 0, -180deg);
+  }
+  100%{
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}
+.zero{
+  $this-weight: 10px;
+  $this-color: #f00;
+
+  margin: 0 .1em; position: relative; font-weight: 400; display: block; animation: zero 3s linear infinite; color: $this-color;
+}
+
+.buttons{
+  display: flex;
+
+  :global{
+    .el-button{
+       font-size: f2rem(16px); flex: 1;
+    }
+  }
+}

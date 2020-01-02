@@ -1,0 +1,48 @@
+.header{
+  @include mheight($home-header);
+  padding: 0 $whole-spac; display: flex; align-items: center;
+
+  &::before{
+    content: ''; display: block; flex: 1;
+  }
+}
+.title{
+  padding-left: 28px; text-indent: .4em; font-size: f2rem(22px); order: -1; background: furl('logo.png') no-repeat 0 46%;
+}
+.menu{
+  $this-size: f2rem(20px);
+  $this-spac: f2rem(64px);
+  $this-mright: fcalc-single($this-spac, 2);
+
+  margin-right: $this-mright; font-size: $this-size; font-weight: 500; display: flex;
+
+  > a{
+    $this-item-plr: f2rem(12px);
+    $this-item-mlr: fcalc(
+      fcalc-single($this-spac, 2),
+      fcalc-single($this-item-plr, -1),
+    );
+
+    margin: 0 $this-item-mlr; padding: 0 $this-item-plr; position: relative; cursor: pointer;
+
+    &:hover, &:focus{
+      color: $gcolor-active;
+    }
+  }
+}
+
+.active{
+  color: $gcolor-active !important;
+
+  &::after{
+    width: 100%; position: absolute; bottom: 0; left: 0; border-top: f2rem(4) solid; content: '';
+  }
+}
+
+.buttons{
+  :global{
+    .el-button{
+      min-width: f2rem(88px); font-size: f2rem(16px);
+    }
+  }
+}

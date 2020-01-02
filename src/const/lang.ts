@@ -1,3 +1,5 @@
+import { env } from './env';
+
 export default {
-  title: '某某表单',
+  title: env.VUE_APP_TITLE,
 };

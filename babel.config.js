@@ -1,6 +1,6 @@
 module.exports = {
   "presets": [
-    "@vue/cli-plugin-babel/preset"
+    "@vue/cli-plugin-babel/preset",
   ],
   "plugins": [
     [
@@ -9,6 +9,8 @@ module.exports = {
         "libraryName": "element-ui",
         "styleLibraryName": "theme-chalk"
       }
-    ]
+    ],
+    [ "@babel/plugin-proposal-optional-chaining" ],
+    [ "@babel/plugin-proposal-nullish-coalescing-operator" ],
   ]
 }

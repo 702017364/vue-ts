@@ -1,11 +1,19 @@
 import Vue from 'vue';
-import { Button, Select } from 'element-ui';
 import Scrollbar from 'element-ui/lib/scrollbar';
 import locale from 'element-ui/lib/locale';
-import lang from '@/components/lang';
+import lang from '@c/lang';
+import {
+  Button,
+  Input,
+  Select,
+} from 'element-ui';
 
 locale.use(lang);
-
-Vue.component(Button.name, Button);
-Vue.component(Select.name, Select);
-Vue.component(Scrollbar.name, Scrollbar);
+[
+  Button,
+  Input,
+  Select,
+  Scrollbar,
+].forEach((Component) => {
+  Vue.component(Component.name, Component);
+});

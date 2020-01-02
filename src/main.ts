@@ -12,6 +12,9 @@ Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 Vue.prototype.$t = t;
+Vue.prototype.$ELEMENT = {
+  size: 'small',
+};
 
 new Vue({
   router,

@@ -6,14 +6,19 @@ export default [
   {
     path: '/404',
     name: '404',
-    component: () => import(/* webpackChunkName: 'error' */ '@/pages/error-404.vue'),
+    component: () => import(/* webpackChunkName: 'error' */ '@/pages/error/404.vue'),
     meta: {
       isAuth: false,
     },
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: 'login' */ '@/pages/login/index.vue'),
+  },
+  {
     path: '/',
     name: '首页',
-    component: () => import('@/pages/home.vue'),
+    component: () => import(/* webpackChunkName: 'view' */ '@/pages/home/index.vue'),
   },
 ];

@@ -7,6 +7,7 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "strictFunctionTypes": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -16,7 +17,7 @@
     ],
     "paths": {
       "@/*": [ "src/*" ],
-      "@const/*": [ "src/const/*" ]
+      "@c/*": [ "src/components/*" ]
     },
     "lib": [
       "esnext",
