@@ -17,6 +17,7 @@
     "quotemark": [true, "single"],
     "eofline": false,
     "whitespace": [false, "check-branch"],
-    "member-access": [true, "no-public"]
+    "member-access": [true, "no-public"],
+    "curly": [true, "ignore-same-line"]
   }
 }
