@@ -6,6 +6,10 @@ import {
   Button,
   Input,
   Select,
+  Form,
+  FormItem,
+  Row,
+  Col,
 } from 'element-ui';
 
 locale.use(lang);
@@ -14,6 +18,10 @@ locale.use(lang);
   Input,
   Select,
   Scrollbar,
+  Form,
+  FormItem,
+  Row,
+  Col,
 ].forEach((Component) => {
   Vue.component(Component.name, Component);
 });
