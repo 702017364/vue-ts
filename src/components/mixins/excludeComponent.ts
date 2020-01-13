@@ -1,4 +1,4 @@
-const keys = 'class|hide|component|other|slots|slotScopeds|ref|directives|style';
+const keys = 'class|hide|component|other|slots|slotScopeds|ref|directives|style|attrs';
 
 export default keys
   .split('|')

@@ -1,7 +1,10 @@
 import Vue from 'vue';
+import { ObjectAny } from './type';
+import { hump } from '@/utils';
 
-const getProps = (componentName: string): object => {
-  return (Vue.component(componentName) as any)?.options?.props;
+export const getProps = (componentName: string): ObjectAny | null => {
+  const name = hump(componentName, true);
+  return (Vue.component(name) as any)?.options?.props ?? null;
 };
 
 export const ElColIncludes = [
@@ -26,9 +29,9 @@ export const ElFormExcludes = [
   'colOption',
 ];
 
-export const ElFormItemProps: object | [] = getProps('ElFormItem') || [
-  'prop',
+export const ElFormItemProps: object | [] = getProps('el-form-item') || [
   'label',
+  'prop',
   'labelWidth',
   'required',
   'rules',

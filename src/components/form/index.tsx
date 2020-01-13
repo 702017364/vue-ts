@@ -4,10 +4,10 @@ import { ElFormDefaults } from './defaults';
 import { ElFormExcludes, ElFormItemProps } from './options';
 import { CreateElement, VNode } from 'vue/types/umd';
 import LayoutClass from './LayoutClass';
-import renderComponent, { Content, Option } from '../mixins/renderComponent';
+import renderComponent from '../mixins/renderComponent';
 import inc4excludes2merge from '@/utils/inc4excludes2merge';
 import styles from '@/styles/public.module.scss';
-import { Column } from './type';
+import { Column, ComponentOption, Content } from './type';
 
 @Component({
   inheritAttrs: false,
@@ -24,7 +24,7 @@ export default class AppForm extends Vue {
       newline?: boolean // 当前行是否从新行开始布局（2）
       wrapClass?: VueClass // 设置列 class（2）
       component?: Component // @字段作为该组件的 props 和 on （以 /^on[A-Z]/ 区分）（1）
-      other?: ObjectValue<object> // 用于补充@字段
+      other?: ObjectValue<any> // 用于补充@字段
       [...@], // 其它字段（用于设置与已有字段会造成冲突的部分）
       class?: VueClass  // 组件的 class（1）
       style?: VueStyle // 组件的样式（1）
@@ -79,14 +79,14 @@ export default class AppForm extends Vue {
     }, []);
   }
 
-  private renderFormItem(h: CreateElement, option: object, index?: number | string): VNode {
+  private renderFormItem(h: CreateElement, option: Column, index?: number | string): VNode {
     const [ formItemOption, componentOption ] = inc4excludes2merge(true, ElFormItemProps, option);
     const { prop } = formItemOption as any;
     const cache = prop && (this.model as any)[prop];
-    const { component, slot, labelSlot } = componentOption as any;
+    const { component, slot, labelSlot } = componentOption as Column;
     const label = labelSlot && this.$slots[labelSlot];
     const value = component || slot
-      ? this.renderContent(h, prop, cache, componentOption as Option)
+      ? this.renderContent(h, prop, cache, componentOption)
       : cache;
     return (
       <el-form-item { ...{ key: index, props: formItemOption } }>
@@ -100,7 +100,7 @@ export default class AppForm extends Vue {
     );
   }
 
-  private renderContent(h: CreateElement, prop: string, value: any, option: Option): Content<any> {
+  private renderContent(h: CreateElement, prop: string, value: any, option: ComponentOption): Content<any> {
     return new renderComponent(this, this.model, { prop, value, option }).render(h);
   }
 }

@@ -1,31 +1,14 @@
 import Vue from 'vue';
-import { CreateElement, VNode, VNodeDirective } from 'vue/types/umd';
+import { CreateElement, VNode } from 'vue/types/umd';
 import formatComponent from './formatComponent';
 import each from '@/utils/each';
 import { NormalizedScopedSlot } from 'vue/types/vnode';
-
-interface Slots {
-  [key: string]: string | [];
-}
-
-export interface Option {
-  component: any;
-  slot: (option: object) => VNode;
-  other?: object;
-  class?: string | string[] | object;
-  slots?: Slots;
-  slotScopeds?: object;
-  ref?: string;
-  directives?: VNodeDirective[];
-  style?: string | object;
-}
-
-export type Content<T> = undefined | VNode | VNode[] | T;
+import { ComponentOption, Content } from '../form/type';
 
 interface Params<T> {
   prop: string;
   value: T;
-  option: Option;
+  option: ComponentOption;
 }
 
 interface ScopedSlot {
@@ -43,7 +26,7 @@ export default class<T> {
   private params: Params<T>;
   private prop: string;
   private value: T;
-  private option: Option;
+  private option: ComponentOption;
 
   constructor(component: Vue, data: object, params: Params<T>) {
     this.$scopedSlots = component.$scopedSlots;
@@ -103,7 +86,7 @@ export default class<T> {
 
   private getComponentOption(): ReturnType<typeof formatComponent> {
     const { option, data, prop } = this;
-    const { class: cls, slotScopeds, ref, directives, style } = option;
+    const { class: cls, slotScopeds, ref, directives, style, attrs } = option;
     const cache = formatComponent(option, (opt) => {
       opt.props.value = this.value;
       opt.on.input = (val: any): void => (data as any)[prop] = val;
@@ -113,6 +96,7 @@ export default class<T> {
     if(ref) cache.ref = ref;
     if(directives) cache.directives = directives;
     if(slotScopeds) cache.slotScopeds = slotScopeds;
+    if(attrs) cache.attrs = attrs;
     return cache;
   }
 }

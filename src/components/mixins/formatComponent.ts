@@ -1,23 +1,17 @@
 import excludeComponent from './excludeComponent';
 import each from '@/utils/each';
-import { VNodeDirective } from 'vue/types/umd';
-
-interface Cache {
-  props: any;
-  on: any;
-  class?: string | [] | object;
-  slotScopeds?: object;
-  ref?: string;
-  style?: string | object;
-  directives?: VNodeDirective[];
-}
+import { JSXOption, ComponentOption, ObjectAny } from '../form/type';
+import { getProps } from '../form/options';
+import { hump } from '@/utils';
 
 type ComponentCallbak = (
-  cache: Cache,
-) => void | Cache;
+  cache: JSXOption,
+) => void | JSXOption;
+
+type GlobalProps = ObjectAny | null;
 
 const RE_EVENT = /^on[A-Z]/;
-const classify = (cache: Cache, option: object, isB?: boolean): Cache => {
+const classify = (cache: JSXOption, option: object, diff: GlobalProps, isB?: boolean): JSXOption => {
   each(option, (key, value) => {
     if(isB && (excludeComponent as any)[key]) return;
     if(RE_EVENT.test(key)) {
@@ -26,22 +20,27 @@ const classify = (cache: Cache, option: object, isB?: boolean): Cache => {
         cache.on[newKey] = value;
       }
     } else {
-      if(value !== undefined && value !== null) {
-        cache.props[key] = value;
-      }
+      if(value === undefined || value === null) return;
+      const keyHump = hump(key);
+      const t = (diff === null || keyHump in diff) ? 'props' : 'attrs';
+      cache[t][key] = value;
     }
   });
   return cache;
 };
 
-export default (option: object, callback: ComponentCallbak): Cache => {
-  const { other = {} } = option as any;
-  const cache: Cache = {
+export default (option: ComponentOption, callback: ComponentCallbak): JSXOption => {
+  const { component, other = {} } = option;
+  const diff: GlobalProps = typeof component === 'string'
+    ? getProps(component)
+    : null;
+  const cache: JSXOption = {
+    attrs: {},
     props: {},
     on: {},
   };
-  classify(cache, option, true);
+  classify(cache, option, diff, true);
   callback(cache);
-  classify(cache, other);
+  classify(cache, other, diff);
   return cache;
 };

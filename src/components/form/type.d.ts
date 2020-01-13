@@ -1,9 +1,11 @@
-import { VNode, CreateElement, VNodeDirective, VueConstructor } from "vue/types/umd";
-import { ScopedSlot } from "vue/types/vnode";
+import { VNode, CreateElement, VNodeDirective, VueConstructor } from 'vue/types/umd';
+import { ScopedSlot } from 'vue/types/vnode';
 
-export type ObjectValue<T> = {
-  [P in keyof T]: T[P];
-};
+export interface ObjectValue<T> {
+  [key: string]: T;
+}
+
+export type ObjectAny = ObjectValue<any>;
 
 export type LayoutCallback = (
   h: CreateElement,
@@ -16,29 +18,42 @@ export interface Col {
   col: object;
 }
 
-export type Content = undefined | null | string | number | VNode | VNode[];
+export type Content<T> = VNode | VNode[] | undefined | T;
 
 export type VueClass = string | string[] | object;
 
 export type VueStyle = string | object;
 
-export type Component = string | VueConstructor;
+export type AppComponent = string | VueConstructor;
 
-export interface Column {
-  label?: string;
-  prop?: string;
-  labelSlot?: string;
-  slot?: string;
-  newline?: boolean;
-  wrapClass?: VueClass;
-  component?: Component;
-  other?: ObjectValue<object>;
+export interface JSXBase {
   class?: VueClass;
   style?: VueStyle;
   ref?: string;
   directives?: VNodeDirective[];
   slotScopeds?: ScopedSlot;
+  attrs?: ObjectAny;
+}
+
+export interface JSXOption extends JSXBase {
+  props: ObjectAny;
+  attrs: ObjectAny;
+  on: ObjectAny;
+}
+
+export interface ComponentOption extends JSXBase {
+  slot?: string;
+  component?: AppComponent;
+  other?: ObjectAny;
   slots?: { [key: string]: string | [any] };
+}
+
+export interface Column extends ComponentOption {
+  label?: string;
+  prop?: string;
+  labelSlot?: string;
+  newline?: boolean;
+  wrapClass?: VueClass;
   hide?: boolean;
   [key: string]: any;
 }
