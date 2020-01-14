@@ -24,13 +24,14 @@ export default class AppForm extends Vue {
       newline?: boolean // 当前行是否从新行开始布局（2）
       wrapClass?: VueClass // 设置列 class（2）
       component?: Component // @字段作为该组件的 props 和 on （以 /^on[A-Z]/ 区分）（1）
-      other?: ObjectValue<any> // 用于补充@字段
+      other?: ObjectAny // 用于补充@字段
       [...@], // 其它字段（用于设置与已有字段会造成冲突的部分）
       class?: VueClass  // 组件的 class（1）
       style?: VueStyle // 组件的样式（1）
       ref?: string // 组件的 ref（1）
       directives?: VNodeDirective[] // 组件的自定义指令（1）
       slotScopeds?: ScopedSlot // 组件的 slotScopeds（1）
+      attrs?: ObjectAny // 设置组件的原生属性（1）
       slots?: { //组件的 slots（1）
         [key: string]: string // 引用已有的 slot
           | [T] // 传递一个 T 类型的值
