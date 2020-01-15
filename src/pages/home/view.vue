@@ -28,12 +28,15 @@ export default class LayoutView extends Vue {
   .home{
     height: 100%; overflow: hidden;
   }
+
   .wrap{
     overflow-x: hidden;
   }
+
   .view{
     min-height: 100%; display: flex; flex-direction: column;
   }
+  
   .body{
     flex: 1;
   }
