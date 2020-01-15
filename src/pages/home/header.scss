@@ -40,9 +40,7 @@
 }
 
 .buttons{
-  :global{
-    .el-button{
-      min-width: f2rem(88px); font-size: f2rem(16px);
-    }
+  :global(.el-button){
+    min-width: f2rem(88px); font-size: f2rem(16px);
   }
 }
