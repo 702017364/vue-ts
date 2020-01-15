@@ -1,5 +1,5 @@
-import { env } from './env';
+import json from './vue.json';
 
 export default {
-  title: env.VUE_APP_TITLE,
+  title: json.VUE_APP_TITLE,
 };
