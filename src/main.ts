@@ -7,6 +7,7 @@ import axios from './axios';
 import '@/styles/index.scss';
 import App from './App.vue';
 import { t } from 'element-ui/lib/locale';
+import '@/mock';
 
 Vue.use(VueAxios, axios);
 

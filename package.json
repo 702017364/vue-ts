@@ -9,12 +9,12 @@
     "analyzer": "npm run build --analyzer=true"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.149",
     "@vope/scss": "^2.4.2",
     "axios": "^0.19.1",
     "core-js": "^3.6.2",
     "element-ui": "^2.13.0",
     "lodash": "^4.17.15",
+    "mockjs": "^1.1.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-class-component": "^7.0.2",
@@ -26,6 +26,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@types/lodash": "^4.14.149",
+    "@types/mockjs": "^1.0.2",
     "@vue/cli-plugin-babel": "^4.1.2",
     "@vue/cli-plugin-router": "^4.1.2",
     "@vue/cli-plugin-typescript": "^4.1.2",
