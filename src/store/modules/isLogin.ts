@@ -1,6 +1,6 @@
 import { IS_LOGIN } from '../types';
 
-export interface State {
+interface State {
   isLogin: boolean;
 }
 
