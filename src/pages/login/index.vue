@@ -1,8 +1,12 @@
 <template>
-  <div class=""></div>
+  <div :class="$style.outer">
+    <div :class="$style.body">
+      <user-login></user-login>
+    </div>
+  </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import UserLogin from './userlogin.vue';
 
@@ -12,6 +16,9 @@ import UserLogin from './userlogin.vue';
   },
 })
 export default class Login extends Vue {
-
 }
 </script>
+
+<style lang="scss" module>
+  @import 'index';
+</style>

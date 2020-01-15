@@ -16,7 +16,7 @@
         <el-button>退出</el-button>
       </template>
       <template v-else>
-        <el-button type="primary">登录</el-button>
+        <el-button type="primary" @click="handleLogin">登录</el-button>
         <el-button>免费注册</el-button>
       </template>
     </div>
@@ -57,6 +57,10 @@ export default class Header extends Vue {
 
   get title(): string {
     return this.$t('title');
+  }
+
+  handleLogin(): void {
+    this.$router.push('/login');
   }
 }
 </script>
