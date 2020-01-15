@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Scrollbar from 'element-ui/lib/scrollbar';
 import locale from 'element-ui/lib/locale';
-import lang from '@c/lang';
+import lang from '@/components/lang';
 import {
   Button,
   Input,

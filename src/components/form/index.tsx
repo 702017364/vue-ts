@@ -6,7 +6,7 @@ import { CreateElement, VNode } from 'vue/types/umd';
 import LayoutClass from './LayoutClass';
 import renderComponent from '../mixins/renderComponent';
 import inc4excludes2merge from '@/utils/inc4excludes2merge';
-import styles from '@/styles/public.module.scss';
+import styles from '@css/public.module.scss';
 import { Column, ComponentOption, Content } from './type';
 
 @Component({

@@ -9,7 +9,7 @@ module.exports = {
 
   css: {
     requireModuleExtension: true,
-    sourceMap: true
+    sourceMap: true,
   },
 
   chainWebpack: (config) => {
@@ -21,7 +21,7 @@ module.exports = {
         .use(analyzer.BundleAnalyzerPlugin);
     const { alias: aliasQuote } = config.resolve;
     [
-      ['@c', 'components'],
+      ['@css', 'styles/module'],
     ].forEach(([ alias, path ]) => {
       const value = join(basic, path);
       aliasQuote.set(alias, value);
