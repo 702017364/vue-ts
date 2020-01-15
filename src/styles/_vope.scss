@@ -5,6 +5,11 @@ $g4import-reset: false;
 $gbasic-color: #425674;
 $gcolor-active: #3278fe;
 $gcolor-placeholder: #ccc;
+$gcolor-dark: #333;
+$gcolor-shadow: change-color(
+  adjust-color($gcolor-dark, $lightness: -20%),
+  $alpha: .1,
+);
 
 /// font
 $gbasic-family: 'PingFangSC-Regular', Arial, 'Microsoft YaHei', sans-serif;
