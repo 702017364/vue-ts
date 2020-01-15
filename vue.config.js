@@ -2,9 +2,22 @@ const { resolve, join } = require('path');
 const analyzer = require('webpack-bundle-analyzer');
 require('./vue')(__dirname);
 
+const { env } = process;
+const product = env.NODE_ENV === 'production';
 const basic = join(__dirname, 'src');
+const entry = ['src/main.ts'];
+
+if(!product) {
+  entry.unshift('src/mock/index.ts');
+}
 
 module.exports = {
+  pages: {
+    index: {
+      entry,
+    },
+  },
+
   productionSourceMap: false,
 
   css: {
@@ -13,8 +26,7 @@ module.exports = {
   },
 
   chainWebpack: (config) => {
-    const { env } = process;
-    env.NODE_ENV === 'production'
+    product
       && !!env.npm_config_analyzer
       && config
         .plugin('webpack-bundle-analyzer')
