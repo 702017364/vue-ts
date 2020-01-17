@@ -1,11 +1,9 @@
 import { VNode, CreateElement, VNodeDirective, VueConstructor } from 'vue/types/umd';
 import { ScopedSlot } from 'vue/types/vnode';
 
-export interface ObjectValue<T> {
+export interface ObjectValue<T = any> {
   [key: string]: T;
 }
-
-export type ObjectAny = ObjectValue<any>;
 
 export type LayoutCallback = (
   h: CreateElement,
@@ -32,19 +30,19 @@ export interface JSXBase {
   ref?: string;
   directives?: VNodeDirective[];
   slotScopeds?: ScopedSlot;
-  attrs?: ObjectAny;
+  attrs?: ObjectValue;
 }
 
 export interface JSXOption extends JSXBase {
-  props: ObjectAny;
-  attrs: ObjectAny;
-  on: ObjectAny;
+  props: ObjectValue;
+  attrs: ObjectValue;
+  on: ObjectValue;
 }
 
 export interface ComponentOption extends JSXBase {
   slot?: string;
   component?: AppComponent;
-  other?: ObjectAny;
+  other?: ObjectValue;
   slots?: { [key: string]: string | [any] };
 }
 

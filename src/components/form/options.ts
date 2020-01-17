@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import { ObjectAny } from './type';
+import { ObjectValue } from './type';
 import { hump } from '@/utils';
 
-export const getProps = (componentName: string): ObjectAny | null => {
+export const getProps = (componentName: string): ObjectValue | null => {
   const name = hump(componentName, true);
   return (Vue.component(name) as any)?.options?.props ?? null;
 };

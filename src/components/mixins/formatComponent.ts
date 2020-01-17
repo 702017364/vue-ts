@@ -1,6 +1,6 @@
 import excludeComponent from './excludeComponent';
 import each from '@/utils/each';
-import { JSXOption, ComponentOption, ObjectAny } from '../form/type';
+import { JSXOption, ComponentOption, ObjectValue } from '../form/type';
 import { getProps } from '../form/options';
 import { hump } from '@/utils';
 
@@ -8,7 +8,7 @@ type ComponentCallbak = (
   cache: JSXOption,
 ) => void | JSXOption;
 
-type GlobalProps = ObjectAny | null;
+type GlobalProps = ObjectValue | null;
 
 const RE_EVENT = /^on[A-Z]/;
 const classify = (cache: JSXOption, option: object, diff: GlobalProps, isB?: boolean): JSXOption => {
