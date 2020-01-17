@@ -17,8 +17,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import AppForm from '@/components/form';
 import { Column } from '@/components/form/type';
-import { UserLoginForm } from '@/types/user';
-import { LOGIN } from '@/store/types';
+import { LoginForm, UserInfo } from '@/types';
 import api from '@/api';
 
 @Component({
@@ -27,7 +26,7 @@ import api from '@/api';
   },
 })
 export default class Userlogin extends Vue {
-  private model: UserLoginForm = {
+  private model: LoginForm = {
     username: '',
     password: '',
     code: '',
@@ -61,8 +60,7 @@ export default class Userlogin extends Vue {
 
   private async handleClick(): Promise<void> {
     this.loginIn = true;
-    const { data } = await this.$http.post<UserLoginForm>(api.login, this.model);
-    const value = await this.$store.dispatch('login', this.model);
+    const value: UserInfo = await this.$store.dispatch('login', this.model);
   }
 }
 </script>
