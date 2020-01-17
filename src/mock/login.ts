@@ -1,14 +1,16 @@
-import { UserLoginForm } from '@/types/user';
+import { LoginForm } from '@/types';
 import { MockUrl } from './util';
 import api from '@/api';
 import mockjs from 'mockjs';
+import { UserInfo } from '@/types';
 
-MockUrl<UserLoginForm>(api.login, {
+MockUrl<LoginForm, UserInfo>(api.login, {
   parse: true,
   template(data) {
     return {
       id: mockjs.mock('@guid'),
-      username: data.username,
+      token: mockjs.mock('@guid'),
+      login_name: data.username,
     };
   },
 });
