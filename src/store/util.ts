@@ -18,20 +18,12 @@ const alreadys = 'STATE|GET|MUTATION|ACTION'.split('|').reduce((obj, key) => {
 
 function type(value: string, list?: []): Type<Already<never>>;
 function type<T extends string>(value: string, list?: T[]): Type<Already<T>>;
-function type<T extends string>(value: string, list?: T[]): Type<Already<T>> {
+function type(value: string, list?: []): any {
   const val = cache(value);
-  const other = (list || []).reduce((option, key) => {
-    if(key in alreadys) return option;
-    Object.defineProperty(option, key, {
-      get() {
-        return `${key}_${val}`;
-      },
-    });
-    return option;
-  }, {} as Other<T>);
-
-  return {
-    STATE: val,
+  const already = {
+    get STATE() {
+      return val;
+    },
     get GET() {
       return `GET_${val}`;
     },
@@ -41,8 +33,16 @@ function type<T extends string>(value: string, list?: T[]): Type<Already<T>> {
     get ACTION() {
       return `ACTION_${val}`;
     },
-    ...other,
-  };
+  } as Other<never>;
+  return (list || []).reduce((option, key) => {
+    if(key in alreadys) return option;
+    Object.defineProperty(option, key, {
+      get() {
+        return `${key}_${val}`;
+      },
+    });
+    return option;
+  }, already);
 }
 
 export { type };
