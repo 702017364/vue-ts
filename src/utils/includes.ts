@@ -1,17 +1,9 @@
-import hasOwnProperty from './hasOwnProperty';
+import inc4excludes, { ResultInclude as Result } from './inc4excludes';
 
-type Keyof<T> = keyof T & string;
+function include<T extends object, K extends string>(data: T, keys: K[]): Result<T, K>;
+function include<T extends object, K extends object>(data: T, keys: K): Result<T, K>;
+function include(data: object, keys: any): any {
+  return inc4excludes(data, keys)[0];
+}
 
-type Limit<T> = Keyof<T> | string;
-
-export default <T extends object, V extends Limit<T>>(data: T, keys: V[]): T => {
-  const includes = {} as T;
-  const hasOwn = hasOwnProperty(data);
-  const hasKey = <K extends Keyof<T>>(key: string): key is K => hasOwn(key);
-  keys.forEach((key) => {
-    if(hasKey(key)) {
-      includes[key] = data[key];
-    }
-  });
-  return includes;
-};
+export default include;

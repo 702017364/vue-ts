@@ -1,13 +1,11 @@
 import hasOwnProperty from './hasOwnProperty';
 
-type Callback<K, V> = (
-  key: K,
-  value: V,
+type Callback<T> = (
+  key: keyof T & string,
+  value: T[keyof T],
 ) => void;
 
-type P<T> = keyof T & string;
-
-export default <T extends object>(option: T, callback: Callback<P<T>, T[P<T>]>): void => {
+export default <T extends object>(option: T, callback: Callback<T>): void => {
   const hasOwn = hasOwnProperty(option);
   for(const key in option) {
     if(hasOwn(key)) {
