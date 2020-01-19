@@ -8,7 +8,7 @@ export type ResultInclude<T, K> = {
 export type ResultExclude<T, K> = {
   [P in Exclude<keyof T, ToKey<K>>]: T[keyof T];
 };
-type Result<T, K> = [
+export type Result<T, K> = [
   ResultInclude<T, K>,
   ResultExclude<T, K>,
 ];
