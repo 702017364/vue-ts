@@ -2,9 +2,9 @@ import { LoginForm } from '@/types';
 import { MockUrl } from './util';
 import mockjs from 'mockjs';
 import { UserInfo } from '@/types';
-import { login } from '@/api';
+import { LOGIN } from '@/api';
 
-MockUrl<LoginForm, UserInfo>(login, {
+MockUrl<LoginForm, UserInfo>(LOGIN, {
   parse: true,
   template(data) {
     return {

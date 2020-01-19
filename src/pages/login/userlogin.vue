@@ -18,7 +18,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import AppForm from '@/components/form';
 import { Column } from '@/components/form/type';
 import { LoginForm, UserInfo } from '@/types';
-import { login } from '@/api';
+import { LOGIN } from '@/api';
 import { USERINFO } from '@/store/types';
 
 @Component({
@@ -61,7 +61,7 @@ export default class Userlogin extends Vue {
 
   private handleClick(): void {
     this.loginIn = true;
-    this.$store.dispatch(login, this.model).then((data) => {
+    this.$store.dispatch(LOGIN, this.model).then((data) => {
       this.loginIn = false;
       this.$router.push('/');
     }, (e) => {

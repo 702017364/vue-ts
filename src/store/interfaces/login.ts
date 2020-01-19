@@ -2,7 +2,7 @@ import { ActionContext, Module } from 'vuex';
 import axios from '@/axios';
 import { UserInfo, LoginForm } from '@/types';
 import { USERINFO } from '@/store/types';
-import { login } from '@/api';
+import { LOGIN } from '@/api';
 
 const STATE = Symbol(USERINFO.STATE);
 
@@ -20,8 +20,8 @@ export default {
     },
   },
   actions: {
-    [login]({ commit }: ActionContext<State, any>, form: LoginForm) {
-      return axios.post<UserInfo>(login, form).then(({ data }) => {
+    [LOGIN]({ commit }: ActionContext<State, any>, form: LoginForm) {
+      return axios.post<UserInfo>(LOGIN, form).then(({ data }) => {
         commit(USERINFO.MUTATION, data);
         return data;
       });
