@@ -1,3 +1,1 @@
-export default {
-  login: '/login',
-};
+export const login = '/login';

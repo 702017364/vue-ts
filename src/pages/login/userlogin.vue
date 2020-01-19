@@ -18,7 +18,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import AppForm from '@/components/form';
 import { Column } from '@/components/form/type';
 import { LoginForm, UserInfo } from '@/types';
-import api from '@/api';
+import { login } from '@/api';
+import { USERINFO } from '@/store/types';
 
 @Component({
   components: {
@@ -58,9 +59,14 @@ export default class Userlogin extends Vue {
     return this.$t('title');
   }
 
-  private async handleClick(): Promise<void> {
+  private handleClick(): void {
     this.loginIn = true;
-    const value: UserInfo = await this.$store.dispatch('login', this.model);
+    this.$store.dispatch(login, this.model).then((data) => {
+      this.loginIn = false;
+      this.$router.push('/');
+    }, (e) => {
+      this.loginIn = false;
+    });
   }
 }
 </script>
