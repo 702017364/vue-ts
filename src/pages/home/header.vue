@@ -11,7 +11,7 @@
       >{{item.label}}</router-link>
     </div>
     <div :class="$style.buttons">
-      <template v-if="isLogin">
+      <template v-if="auth">
         <el-button type="text">进入中心</el-button>
         <el-button>退出</el-button>
       </template>
@@ -26,6 +26,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
+import { AUTH } from '@/store/types';
 
 interface Menu {
   label: string;
@@ -34,7 +35,7 @@ interface Menu {
 
 @Component
 export default class Header extends Vue {
-  @Getter private isLogin!: boolean;
+  @Getter(AUTH.GET) private auth!: boolean;
 
   private menu: Menu[] = [
     {

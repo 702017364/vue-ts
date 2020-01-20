@@ -1,10 +1,10 @@
 import { ActionContext, Module } from 'vuex';
 import axios from '@/axios';
 import { UserInfo, LoginForm } from '@/types';
-import { USERINFO } from '@/store/types';
-import { LOGIN } from '@/api';
+import { USERINFO, AUTH } from '@/store/types';
+import { LOGIN as api } from '@/api';
 
-const STATE = Symbol(USERINFO.STATE);
+const STATE = 'login';
 
 interface State {
   [STATE]: UserInfo | null;
@@ -20,8 +20,9 @@ export default {
     },
   },
   actions: {
-    [LOGIN]({ commit }: ActionContext<State, any>, form: LoginForm) {
-      return axios.post<UserInfo>(LOGIN, form).then(({ data }) => {
+    [api]({ commit }: ActionContext<State, any>, form: LoginForm) {
+      return axios.post<UserInfo>(api, form).then(({ data }) => {
+        commit(AUTH.MUTATION, true);
         commit(USERINFO.MUTATION, data);
         return data;
       });

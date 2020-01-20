@@ -21,9 +21,6 @@ function type<T extends string>(value: string, list?: T[]): Type<Already<T>>;
 function type(value: string, list?: []): any {
   const val = cache(value);
   const already = {
-    get STATE() {
-      return val;
-    },
     get GET() {
       return `GET_${val}`;
     },
