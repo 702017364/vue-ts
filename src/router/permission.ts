@@ -14,12 +14,14 @@ export default (async (to, from, next) => {
   if(whiteOption[to.path]) {
     next();
   } else {
-    if(from.path === '/login' && store.getters(AUTH.GET)) {
-      next();
-    } else if(await store.dispatch(ACTION)) {
+    if(from.path === '/login' && store.getters[AUTH.GET]) {
       next();
     } else {
-      next('/login');
+      if(await store.dispatch(ACTION)) {
+        next();
+      } else {
+        next('/login');
+      }
     }
   }
 }) as NavigationGuard;
