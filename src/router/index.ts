@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import pageRouter from './page';
+import permission from './permission';
 
 Vue.use(VueRouter);
 
@@ -18,5 +19,7 @@ const router = new VueRouter({
     }
   },
 });
+
+router.beforeEach(permission);
 
 export default router;
