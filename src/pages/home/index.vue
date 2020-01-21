@@ -1,6 +1,8 @@
 <template>
   <layout-view>
-    <el-tabs :class="$style.tabs">
+    <el-tabs
+      v-model="active"
+      :class="$style.tabs">
       <el-tab-pane
         v-for="([ label, component ], index) in list"
         :key="index"
@@ -35,6 +37,8 @@ export default class Home extends Vue {
   private list: Tuple[] = [
     ThreeCube,
   ].map((component) => [component.name, component]);
+
+  private active: string = '0';
 }
 </script>
 
