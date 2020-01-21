@@ -10,6 +10,8 @@ import {
   FormItem,
   Row,
   Col,
+  Tabs,
+  TabPane,
 } from 'element-ui';
 
 locale.use(lang);
@@ -22,6 +24,8 @@ locale.use(lang);
   FormItem,
   Row,
   Col,
+  Tabs,
+  TabPane,
 ].forEach((Component) => {
   Vue.component(Component.name, Component);
 });

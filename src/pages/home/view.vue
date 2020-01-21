@@ -38,6 +38,6 @@ export default class LayoutView extends Vue {
   }
   
   .body{
-    flex: 1;
+    flex: 1; display: flex; overflow: hidden;
   }
 </style>
